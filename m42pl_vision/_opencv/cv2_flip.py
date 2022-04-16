@@ -23,15 +23,22 @@ class CV2Flip(StreamingCommand):
 
     async def setup(self, event, pipeline, context):
         direction = await self.direction.read(event, pipeline, context)
-        match direction:
-            case ("u"|"up"|"d"|"down"):
-                self.flip = 0
-            case ("l"|"left"|"r"|"right"):
-                self.flip = 1
-            case ("f"|"full"):
-                self.flip = -1
-            case _:
-                pass
+        if direction in ["u", "up", "d", "down"]:
+            self.flip = 0
+        elif direction in ["l", "left", "r", "right"]:
+            self.fliip = 1
+        elif direction in ['f', 'full']:
+            self.flip = -1
+
+        # match direction:
+        #     case ("u"|"up"|"d"|"down"):
+        #         self.flip = 0
+        #     case ("l"|"left"|"r"|"right"):
+        #         self.flip = 1
+        #     case ("f"|"full"):
+        #         self.flip = -1
+        #     case _:
+        #         pass
 
     async def target(self, event, pipeline, context):
         try:

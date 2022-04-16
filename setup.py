@@ -8,7 +8,7 @@ setup(
   version='1.0.0',
   packages=['m42pl_vision',],
   install_requires=[
-    'm42pl',
+    'm42pl-core',
     # ---
     'opencv-contrib-python==4.5.5.62',
     'mediapipe==0.8.9.1'

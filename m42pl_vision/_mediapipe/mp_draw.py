@@ -62,15 +62,19 @@ class MPDraw(StreamingCommand):
                     )
             # ---
             # Draw MediaPipe's landamrks
-            if landmarks is not None:
-                for landmark in landmarks:
-                    mp.solutions.drawing_utils.draw_landmarks(
-                        image=frame,
-                        landmark_list=landmark,
-                        # connections=self.mp_face_mesh.FACE_CONNECTIONS,
-                        # connections=self.mp_face_mesh.FACEMESH_TESSELATION,
-                        landmark_drawing_spec=self.mps_drawing_spec,
-                        connection_drawing_spec=self.mps_drawing_spec)
+            try:
+                if landmarks is not None:
+                    print(landmarks, type(landmarks))
+                    for landmark in landmarks:
+                        mp.solutions.drawing_utils.draw_landmarks(
+                            image=frame,
+                            landmark_list=landmark,
+                            # connections=self.mp_face_mesh.FACE_CONNECTIONS,
+                            # connections=self.mp_face_mesh.FACEMESH_TESSELATION,
+                            landmark_drawing_spec=self.mps_drawing_spec,
+                            connection_drawing_spec=self.mps_drawing_spec)
+            except:
+                pass
             # ---
             # Update frame field
             await self.frame.write(event, frame)
